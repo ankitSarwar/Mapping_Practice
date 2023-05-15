@@ -4,6 +4,7 @@ import com.example.Mapping.Practice.model.Course;
 import com.example.Mapping.Practice.model.CourseKey;
 import com.example.Mapping.Practice.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,7 +45,18 @@ public class CourseController {
 
     @DeleteMapping("/{title}")
     public ResponseEntity<Void> deleteCourse(@PathVariable String title) {
-        courseService.deleteCourse(title);
-        return ResponseEntity.noContent().build();
+
+        HttpStatus status;
+        try {
+            courseService.deleteCourseByTitle(title);
+            status = HttpStatus.OK;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+            status = HttpStatus.NOT_ACCEPTABLE;
+        }
+        return new ResponseEntity<Void>(status);
     }
 }
+

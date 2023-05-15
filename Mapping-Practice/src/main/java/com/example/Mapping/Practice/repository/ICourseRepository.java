@@ -11,5 +11,5 @@ public interface ICourseRepository extends JpaRepository<Course, String> {
 
     Optional<Course> findByTitle(String title);
 
-    Course deleteByTitle(String title);
+
 }

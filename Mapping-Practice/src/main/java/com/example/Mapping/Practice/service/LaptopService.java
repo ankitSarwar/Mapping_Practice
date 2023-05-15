@@ -2,11 +2,10 @@ package com.example.Mapping.Practice.service;
 
 import com.example.Mapping.Practice.model.Laptop;
 import com.example.Mapping.Practice.repository.ILaptopRepository;
-import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,19 +19,19 @@ public class LaptopService {
         return laptopRepository.save(laptop);
     }
 
-    public ResponseEntity<Laptop> getAllLaptops() {
-        return (ResponseEntity<Laptop>) laptopRepository.findAll();
+    public List<Laptop> getAllLaptops() {
+        return laptopRepository.findAll();
     }
 
-    public Optional<Laptop> getLaptopById(String laptopId) {
-        return laptopRepository.findById(laptopId);
+    public Optional<Laptop> getLaptopById(Long laptopId) {
+        return laptopRepository.findById(String.valueOf(laptopId));
     }
 
     public Laptop updateLaptop(Laptop laptop) {
         return laptopRepository.save(laptop);
     }
 
-    public void deleteLaptop(String laptopId) {
-        laptopRepository.deleteById(laptopId);
+    public void deleteLaptop(Long laptopId) {
+        laptopRepository.deleteById(String.valueOf(laptopId));
     }
 }

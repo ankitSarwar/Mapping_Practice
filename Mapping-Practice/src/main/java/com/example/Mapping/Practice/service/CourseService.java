@@ -36,13 +36,16 @@ public class CourseService {
         return courseRepository.save(course);
     }
 
-    public void deleteCourse(String title) {
 
-        Optional<Course> courseTitle =courseRepository.findByTitle(title);
-////        studentRepository.
-//                Student studentList= (Student) courseTitle.get().getStudentList();
-//        studentRepository.deleteByStudent(studentList);
 
+    public void deleteCourseByTitle(String title) {
+        Optional<Course> course = courseRepository.findByTitle(title);
+        if (course.isPresent()) {
+            courseRepository.delete(course.get());
+        } else {
+            // Handle the case where the course with the specified title doesn't exist
+            throw new IllegalStateException("Course not found");
+        }
     }
 
 

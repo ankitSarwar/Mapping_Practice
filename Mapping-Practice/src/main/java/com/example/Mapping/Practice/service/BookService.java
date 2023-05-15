@@ -26,9 +26,9 @@ public class BookService {
         return bookRepository.findAll();
     }
 
-    public Optional<Book> getBookById(String bookId)
+    public Optional<Book> getBookById(Long bookId)
     {
-        return bookRepository.findById(bookId);
+        return bookRepository.findById(String.valueOf(bookId));
     }
 
     public Book updateBook(Book book)
@@ -36,8 +36,8 @@ public class BookService {
         return bookRepository.save(book);
     }
 
-    public void deleteBook(String bookId)
+    public void deleteBook(Long bookId)
     {
-        bookRepository.deleteById(bookId);
+        bookRepository.deleteById(String.valueOf(bookId));
     }
 }

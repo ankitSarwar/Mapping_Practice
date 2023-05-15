@@ -25,5 +25,6 @@ public class Course {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_Student_student_id")
     private List<Student> studentList;
+
 }
 

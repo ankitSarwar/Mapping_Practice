@@ -30,8 +30,8 @@ public class StudentService {
         return studentRepository.save(student);
     }
 
-    public void deleteStudent(String studentId) {
-        studentRepository.deleteById(studentId);
+    public void deleteStudent(Long studentId) {
+        studentRepository.deleteById(String.valueOf(studentId));
     }
 }
 

@@ -30,7 +30,7 @@ public class BookController {
     }
 
     @GetMapping("/{bookId}")
-    public ResponseEntity<Book> getBookById(@PathVariable String bookId) {
+    public ResponseEntity<Book> getBookById(@PathVariable Long bookId) {
         Optional<Book> book = bookService.getBookById(bookId);
         return book.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
@@ -42,7 +42,7 @@ public class BookController {
     }
 
     @DeleteMapping("/{bookId}")
-    public ResponseEntity<Void> deleteBook(@PathVariable String bookId) {
+    public ResponseEntity<Void> deleteBook(@PathVariable Long bookId) {
         bookService.deleteBook(bookId);
         return ResponseEntity.noContent().build();
     }

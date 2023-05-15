@@ -2,12 +2,11 @@ package com.example.Mapping.Practice.controller;
 
 import com.example.Mapping.Practice.model.Laptop;
 import com.example.Mapping.Practice.service.LaptopService;
-import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -25,13 +24,12 @@ public class LaptopController {
     }
 
     @GetMapping("/getAll")
-    public ResponseEntity<Laptop> getAllLaptops() {
-
-        return ResponseEntity.ok(laptopService.getAllLaptops().getBody());
+    public List<Laptop> getAllLaptops() {
+        return laptopService.getAllLaptops();
     }
 
     @GetMapping("/{laptopId}")
-    public ResponseEntity<Laptop> getLaptopById(@PathVariable String laptopId) {
+    public ResponseEntity<Laptop> getLaptopById(@PathVariable Long laptopId) {
         Optional<Laptop> laptop = laptopService.getLaptopById(laptopId);
         return laptop.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
@@ -43,7 +41,7 @@ public class LaptopController {
     }
 
     @DeleteMapping("/{laptopId}")
-    public ResponseEntity<Void> deleteLaptop(@PathVariable String laptopId) {
+    public ResponseEntity<Void> deleteLaptop(@PathVariable Long laptopId) {
         laptopService.deleteLaptop(laptopId);
         return ResponseEntity.noContent().build();
     }
